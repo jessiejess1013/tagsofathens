@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <title>Tags of Athens</title>
+  </head>
+  <body>
+    <div class="panels">
+      <a class="panel panel1" href="Scion.html"></a>
+      <a class="panel panel2" href="GoVegan.html"> </a>
+      <a class="panel panel3" href="AirBnB.html"></a>
+    </div>
+    <div class="panels">
+      <a class="panel panel4" href="Space.html"></a>
+      <a class="panel panel5" href="Deco.html"></a>
+      <a class="panel panel6" href="Boobs.html"></a>
+    </div>
+  </body>
+</html>
+
+<style>
+  html {
+    box-sizing: border-box;
+    font-family: helvetica;
+    font-size: 12px;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: bisque;
+  }
+
+  .panels {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 50vh;
+    transition: flex 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+
+  .panel1 {
+    background: #ffd504;
+  }
+  .panel2 {
+    background: #594a42;
+  }
+  .panel3 {
+    background: #589262;
+  }
+  .panel4 {
+    background: #7763fa;
+  }
+  .panel5 {
+    background: #ed1c24;
+  }
+  .panel6 {
+    background: #fbb040;
+  }
+
+  .panel.open {
+    flex: 100;
+  }
+
+  .panel.open-active {
+    animation: height 1s cubic-bezier(0.6, -2.5, 0.735, 0.045) forwards;
+  }
+  @keyframes height {
+    to {
+      height: 100vh;
+    }
+  }
+
+  .innerHtml {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  const panels = document.querySelectorAll(".panel");
+  const tl = anime.timeline({});
+
+  tl.add({
+    target: panels,
+    flex: 100,
+  });
+
+  function toggleOpen() {
+    this.classList.toggle("open");
+  }
+  function toggleActive(e) {
+    if (e.propertyName.includes("flex")) {
+      this.classList.toggle("open-active");
+    }
+  }
+  function loadPage() {
+    this.innerHTML =
+      '<object class="innerHtml" type="text/html" data="GoVegan.html" ></object>';
+  }
+
+  panels.forEach((panel) => {
+    panel.addEventListener("click", tl);
+    panel.addEventListener("transitionend", toggleActive);
+    panel.addEventListener("animationend", loadPage);
+  });
+</script>

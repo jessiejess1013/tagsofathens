@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deco</title>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+  </head>
+  <body>
+    <svg class="all" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 360">
+      <g fill="white">
+        <circle r="8">
+          <animateMotion
+            dur="3.6s"
+            path="M445.9,196.4c-10-98.2,32.7-123.2,52.5-123.2c21.4,0,51.5,38.8,51.5,87.3s-21.5,86.3-46.3,89.8c-22.3,3.2-50.8-21.3-50.8-69.8"
+          />
+        </circle>
+        <circle r="8">
+          <animateMotion
+            dur="3.6s"
+            repeatCount="2"
+            path="M270.7,114.5c-10.6,4.2-69.9,3.9-69.9,8.9c0,40.9,30.2,146.1,38.4,163.5c1.3,2.8,36.8-45.7,55-44.3"
+          />
+        </circle>
+        <circle r="8">
+          <animateMotion
+            dur="3.6s"
+            repeatCount="3"
+            path="M416.9,125.8C388,43.3,322.4,89.6,322.4,162c0,62,68.3,119.5,73.5,39.4"
+          />
+        </circle>
+        <circle r="8">
+          <animateMotion
+            dur="3.6s"
+            repeatCount="4"
+            path="M114.6,314.8c-24.9-72.2-76.3-144-69.5-148c9.7-5.8,91.2-26.6,114.8,11.6c13.3,21.6,28.4,91.7-38.9,134.8"
+          />
+        </circle>
+      </g>
+      <g
+        class="letters"
+        fill="none"
+        stroke="white"
+        stroke-miterlimit=" 10"
+        stroke-width="12"
+        stroke-lineJoin="round"
+        stroke-lineCap="round"
+      >
+        <path
+          d="M445.9,196.4c-10-98.2,32.7-123.2,52.5-123.2c21.4,0,51.5,38.8,51.5,87.3s-21.5,86.3-46.3,89.8c-22.3,3.2-50.8-21.3-50.8-69.8"
+        />
+        <path
+          d="M270.7,114.5c-10.6,4.2-69.9,3.9-69.9,8.9c0,40.9,30.2,146.1,38.4,163.5c1.3,2.8,36.8-45.7,55-44.3"
+        />
+        <path
+          d="M416.9,125.8C388,43.3,322.4,89.6,322.4,162c0,62,68.3,119.5,73.5,39.4"
+        />
+        <path
+          d="M114.6,314.8c-24.9-72.2-76.3-144-69.5-148c9.7-5.8,91.2-26.6,114.8,11.6c13.3,21.6,28.4,91.7-38.9,134.8"
+        />
+      </g>
+      <g
+        class="lines"
+        fill="none"
+        stroke="white"
+        stroke-miterlimit=" 10"
+        stroke-width="12"
+        stroke-lineJoin="round"
+        stroke-lineCap="round"
+      >
+        <path d="M206.2,228.2c4.3-24.4,19.2-44,44.4-50.9" />
+        <path d="M435.9,76.6c4.4-21,16.5-37.6,36-40" />
+        <path d="M476.5,193c5.4-19.3,15.6-29.4,34.9-29.4" />
+      </g>
+    </svg>
+    <svg width="100vw" height="100vh">
+      <defs>
+        <pattern
+          viewbox="0 0 20 33.3vh"
+          id="squares"
+          width="20"
+          height="33.3vh"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect x="0" y="0" fill="#6D6E71" width="15" height="30vh" />
+        </pattern>
+      </defs>
+      <rect
+        y="-33.3vh"
+        width="100vw"
+        height="33.3vh"
+        fill="url(#squares)"
+        class="squareline"
+      ></rect>
+      <rect
+        y="-33.3vh"
+        width="100vw"
+        height="33.3vh"
+        fill="url(#squares)"
+        class="squareline"
+      ></rect>
+      <rect
+        y="-33.3vh"
+        width="100vw"
+        height="33.3vh"
+        fill="url(#squares)"
+        class="squareline"
+      ></rect>
+    </svg>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #ed1c24;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .all {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .letters.lines {
+    stroke-dasharray: 450;
+    stroke-dashoffset: 450;
+  }
+</style>
+
+<script>
+  const allletters = document.querySelectorAll(".letters path");
+  const lines = document.querySelectorAll(".lines path");
+  const tl = anime.timeline({});
+
+  tl.add({
+    targets: "circle",
+    opacity: 0,
+    delay: function (el, i) {
+      return (i + 1) * 3600;
+    },
+  })
+    .add(
+      {
+        targets: allletters,
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: "easeInOutCirc",
+        delay: function (el, i) {
+          return (i + 1) * 3600;
+        },
+      },
+      "-=16500"
+    )
+    .add({
+      targets: lines,
+      strokeDashoffset: [anime.setDashoffset, 0],
+      duration: 1000,
+      easing: "easeInOutCirc",
+    })
+    .add({
+      targets: ".squareline",
+      translateY: function (el, i) {
+        return (i + 1) * 33.3 + "vh";
+      },
+      delay: function (el, i) {
+        return i * 500;
+      },
+      easing: "easeInOutBack",
+    })
+    .add({
+      targets: "body",
+      background: ["#ed1c24", "#231f20"],
+      duration: 1000,
+    })
+    .add(
+      {
+        targets: ".lines, .letters",
+        stroke: ["#FFFFFF", "#ed1c24"],
+      },
+      "-=1000"
+    );
+</script>
